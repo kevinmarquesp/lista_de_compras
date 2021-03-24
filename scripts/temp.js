@@ -1,7 +1,7 @@
-const pagina_inicial = document.getElementById( 'pagina_inicial')
-const adicionar_item = document.getElementById( 'adicionar_item')
-const editar_item = document.getElementById( 'editar_item')
+const pagina_inicial00 = document.getElementById( 'pagina_inicial')
+const adicionar_item00 = document.getElementById( 'adicionar_item')
+const editar_item00 = document.getElementById( 'editar_item')
 
-pagina_inicial.style.display = 'initial'
-adicionar_item.style.display = 'none'
-editar_item.style.display = 'none'
+pagina_inicial00.style.display = 'none'
+adicionar_item00.style.display = 'none'
+editar_item00.style.display = 'initial'
