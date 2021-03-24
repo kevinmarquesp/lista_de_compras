@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Lista de Compras</title>
+
+        <link rel="stylesheet" href="global.css">
+        <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/pagina-principal.css">
+        <link rel="stylesheet" href="styles/adicionar-item.css">
+        <link rel="stylesheet" href="styles/editar-item.css">
+
+    </head>
+    <body>
+        
+        <main>
+            <div id="pagina_inicial">
+                <nav>
+                    <h1> Página inicial </h1>
+                </nav>
+                <section>
+                    <ul id="lista_principal">
+                        <!-- <li class="item_lista">
+                            <ul class="descricao">
+                                <li>
+                                    <span class="nome"> Arroz </span>
+                                    <span class="preco"> R$ 21,90 </span>
+                                </li>
+                                <li>
+                                    <span class="preco_total"> R$ 21,90 </span>
+                                    <span class="quantidade"> (1x) </span>
+                                </li>
+                            </ul>
+                            <div class="li_botoes">
+                                <button class="detalhes"> Detalhes </button>
+                                <button class="remover"> Remover </button>
+                            </div>
+                        </li> -->
+                    </ul>
+                    <div id="nada_adicionado">
+                        <span> Nada adicionado ainda... </span>
+                    </div>
+                    <div class="dados_finais">
+                        <!-- <div class="linha"><div></div></div>
+                        <ul>
+                            <li id="produtos"> Produtos: 1 </li>
+                            <li id="itens"> Itens: 1 </li>
+                            <li id="preco_total"> Total: <span class="verde"> R$ 21,90 </span> </li>
+                        </ul> -->
+                    </div>
+                </section>
+                <footer>
+                    <button id="adicionar"> &plus; </button>
+                </footer>
+            </div>
+            <div id="adicionar_item">
+                <nav>
+                    <h1> Adicionar novo item </h1>
+                </nav>
+                <br>
+                <section>
+                    <div class="section">
+                        <div class="input">
+                            <input type="text" class="input" id="nome_produto" placeholder="Insira o nome do produto">
+                            <button class="clear"></button>
+                        </div>
+                        <div class="numeros">
+                            <div class="input">
+                                <input type="number" class="input" id="preco_produto" placeholder="Preço do produto">
+                                <button class="clear"></button>
+                            </div>
+                            <div class="input">
+                                <input type="number" class="input" id="quantidade_produto" placeholder="Quantidade">
+                                <button class="clear"></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="cancel-confirm">
+                        <button class="cancel" id="cacelar_add"> Cancelar </button>
+                        <button class="confirm" id="adicionar"> Adicionar </button>
+                    </div>
+                </footer>
+            </div>
+            <div id="editar_item">
+                <nav>
+                    <h1> Informações deste item </h1>
+                </nav>
+                <br>
+                <section>
+                    <div class="section">
+                        <ul>
+                            <li> <span> Nome: </span> <input type="text" class="edit" id="nome_edit"> </li>
+                            <li class="preco"> <span> R$ </span> <input type="number" class="edit" id="preco_edit"> </li>
+                            <li> <span> Quantidade: </span> <input type="number" class="edit" id="quantidade_edit"> </li>
+                        </ul>
+                    </div>
+                </section>
+                <footer>
+                    <div class="cancel-confirm">
+                        <button class="cancel" id="cacelar_edit"> Cancelar </button>
+                        <button class="confirm" id="salvar"> Salvar </button>
+                    </div>
+                </footer>
+            </div>
+            <div id="registro_lista">
+                <textarea id="registro_da_lista"></textarea>
+            </div>
+        </main>
+
+        <script src="scripts/temp.js"></script>
+    </body>
+</html>

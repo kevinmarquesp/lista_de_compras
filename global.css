@@ -1,0 +1,66 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; }
+main {
+    position: absolute;
+    width: 100%; height: 100%;
+    
+}
+ul { list-style: none; }
+
+
+
+/* Barra de navegação. */
+nav {
+    background-color: green; color: white;
+    text-align: center; padding: 5px 0;
+    position: fixed; width: 100vw;
+    right: 0; top: 0;
+}
+nav h1 {
+    font-size: 12pt;
+    text-transform: uppercase;
+}
+
+
+/* Seção de cada "página". */
+section {
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+
+
+/* Linha horizontal simples... */
+div.linha {
+    display: flex; justify-content: center;
+    margin: 30px;
+}
+div.linha div {
+    background-color: gray;
+    width: 3rem; height: 3px;
+    border-radius: 100px;
+}
+
+
+
+/* Tela de input. */
+section {
+    display: flex; justify-content: center;
+}
+
+section div.section {
+    width: 30rem;
+}
+
+
+
+/* Botões de aumentar e diminuir */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none; }
+input[type="number"] { -moz-appearance: textfield; }
+
+
+
+/* ISSO SEMPRE FICA OCULTO */
+div#registro_lista { display: none; }

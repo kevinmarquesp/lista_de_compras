@@ -1,0 +1,32 @@
+footer {
+    position: fixed;
+    right: 20px; bottom: 20px;
+}
+
+div#pagina_inicial footer button {
+    width: 50px; height: 50px;
+    border: none; border-radius: 100px;
+
+    background-color: green; color: white;
+    font-size: 25px; font-weight: bold;
+}
+
+
+
+footer div.cancel-confirm {
+    border-radius: 100px;
+    border-width: 1px;
+    border-color: green;
+    border-style: solid;
+}
+footer div.cancel-confirm .cancel {
+    background-color: transparent; color: green;
+    border: none;
+    margin: 0 10px 0 20px;
+}
+footer div.cancel-confirm .confirm {
+    background-color: green; color: white;
+    border: none; border-radius: 14px;
+
+    width: 100px; height: 30px;
+}

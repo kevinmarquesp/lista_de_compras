@@ -1,0 +1,73 @@
+ul#lista_principal li.item_lista {
+    background-color: #80808010; color: gray;
+    display: flex; justify-content: space-between;
+    padding: 15px 25px;
+
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-left-color: green;
+
+    margin: 15px 0;
+}
+
+
+
+ul.descricao li span.nome {
+    font-size: 20px;
+    font-weight: bold;
+}
+ul.descricao li span.preco {
+    padding-left: 7px;
+    margin-left: 3px;
+
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: #80808077;
+}
+ul.descricao li span.preco_total {
+    color: green;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+ul#lista_principal div.li_botoes button.detalhes {
+    background-color: green; color: white;
+    border: none; border-radius: 100px;
+    padding: 5px 15px;
+    display: block;
+}
+ul#lista_principal div.li_botoes button.remover {
+    background-color: transparent; color: green;
+    border: none;
+    padding: 5px 15px;
+    display: block;
+    margin-top: 5px;
+}
+
+
+div.dados_finais {
+    margin-bottom: 100px;
+}
+div.dados_finais ul {
+    text-align: center;
+    text-transform: uppercase;
+}
+div.dados_finais ul li {
+    color: gray;
+    margin-bottom: 7px;
+}
+div.dados_finais ul li#preco_total {
+    font-size: 25px;
+    font-weight: bold;
+}
+.verde {
+    color: green;
+}
+
+
+
+div#nada_adicionado {
+    width: 100%;
+    text-align: center;
+    color: gray;
+}

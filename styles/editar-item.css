@@ -1,0 +1,25 @@
+div#editar_item section div ul li {
+    display: flex; justify-content: space-between;
+    color: gray;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+div#editar_item section div ul li span { margin-right: 10px; }
+input.edit {
+    width: 100%;
+    border: none;
+    background-color: #c6c6c614;
+    color: gray;
+}
+
+div#editar_item section div ul li.preco {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: green;
+    margin: 20px 0;
+}
+div#editar_item section div ul li.preco * {
+    color: green;
+    font-size: 30px;
+    font-weight: bold;
+}
