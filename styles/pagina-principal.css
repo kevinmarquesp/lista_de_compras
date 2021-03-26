@@ -1,3 +1,12 @@
+div#pagina_inicial section {
+    display: block;
+}
+
+
+ul#lista_principal {
+    width: 100%;
+}
+
 ul#lista_principal li.item_lista {
     background-color: #80808010; color: gray;
     display: flex; justify-content: space-between;
@@ -67,6 +76,9 @@ div#dados_finais ul li#preco_total {
 
 
 div#nada_adicionado {
+    position: fixed;
+    top: 50px;
+
     width: 100%;
     text-align: center;
     color: gray;
