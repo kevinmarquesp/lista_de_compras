@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Lista de Compras</title>
+
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: Arial, Helvetica, sans-serif; }
+            main {
+                position: absolute;
+                width: 100%; height: 100%;
+                
+            }
+            ul { list-style: none; }
+
+
+
+            /* Barra de navegação. */
+            nav {
+                background-color: green; color: white;
+                text-align: center; padding: 5px 0;
+                position: fixed; width: 100vw;
+                right: 0; top: 0;
+            }
+            nav h1 {
+                font-size: 12pt;
+                text-transform: uppercase;
+            }
+
+
+            /* Seção de cada "página". */
+            section {
+                margin-top: 50px;
+                padding: 0 20px;
+            }
+
+
+
+            /* Linha horizontal simples... */
+            div.linha {
+                display: flex; justify-content: center;
+                margin: 30px;
+            }
+            div.linha div {
+                background-color: gray;
+                width: 3rem; height: 3px;
+                border-radius: 100px;
+            }
+
+
+
+            /* Tela de input. */
+            section {
+                display: flex; justify-content: center;
+            }
+
+            section div.section {
+                width: 30rem;
+            }
+
+
+
+            /* Botões de aumentar e diminuir */
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                    -webkit-appearance: none; }
+            input[type="number"] { -moz-appearance: textfield; }
+        </style>
+        <style>
+            footer {
+                position: fixed;
+                right: 20px; bottom: 20px;
+            }
+
+            div#pagina_inicial footer button {
+                width: 50px; height: 50px;
+                border: none; border-radius: 100px;
+
+                background-color: green; color: white;
+                font-size: 25px; font-weight: bold;
+            }
+
+
+
+            footer div.cancel-confirm {
+                border-radius: 100px;
+                border-width: 1px;
+                border-color: green;
+                border-style: solid;
+            }
+            footer div.cancel-confirm .cancel {
+                background-color: transparent; color: green;
+                border: none;
+                margin: 0 10px 0 20px;
+            }
+            footer div.cancel-confirm .confirm {
+                background-color: green; color: white;
+                border: none; border-radius: 14px;
+
+                width: 100px; height: 30px;
+            }
+        </style>
+        <style>
+            div#pagina_inicial section {
+                display: block;
+            }
+
+
+            ul#lista_principal {
+                width: 100%;
+            }
+
+            ul#lista_principal li.item_lista {
+                background-color: #80808010; color: gray;
+                display: flex; justify-content: space-between;
+                padding: 15px 25px;
+
+                border-left-style: solid;
+                border-left-width: 5px;
+                border-left-color: green;
+
+                margin: 15px 0;
+            }
+
+
+
+            ul.descricao li span.nome {
+                font-size: 20px;
+                font-weight: bold;
+            }
+            ul.descricao li span.preco {
+                padding-left: 7px;
+                margin-left: 3px;
+
+                border-left-style: solid;
+                border-left-width: 2px;
+                border-left-color: #80808077;
+            }
+            ul.descricao li span.preco_total {
+                color: green;
+                font-weight: bold;
+                font-size: 30px;
+            }
+
+            ul#lista_principal div.li_botoes button.detalhes {
+                background-color: green; color: white;
+                border: none; border-radius: 100px;
+                padding: 5px 15px;
+                display: block;
+            }
+            ul#lista_principal div.li_botoes button.remover {
+                background-color: transparent; color: green;
+                border: none;
+                padding: 5px 15px;
+                display: block;
+                margin-top: 5px;
+            }
+
+
+            div#dados_finais {
+                margin-bottom: 100px;
+            }
+            div#dados_finais ul {
+                text-align: center;
+                text-transform: uppercase;
+            }
+            div#dados_finais ul li {
+                color: gray;
+                margin-bottom: 7px;
+            }
+            div#dados_finais ul li#preco_total {
+                font-size: 25px;
+                font-weight: bold;
+            }
+            .verde {
+                color: green;
+            }
+
+
+
+            div#nada_adicionado {
+                position: fixed;
+                top: 50px;
+
+                width: 100%;
+                text-align: center;
+                color: gray;
+            }
+        </style>
+        <style>
+            div.input {
+                border-radius: 100px;
+                border-style: solid;
+                border-width: 1px;
+                border-color: green;
+
+                margin: 10px 0;
+                display: flex; justify-content: space-between;
+                align-items: center;
+                height: 30px;
+
+            }
+            div.input input {
+                border: none;
+                background-color: transparent; color: gray;
+                padding: 0 30px;
+                width: 100%; height: 30px;
+            }
+            div.input button {
+                border: none;
+                border-radius: 100px;
+
+                background-color: green;
+                min-width: 20px; max-width: 20px;
+                min-height: 20px; max-height: 20px;
+                margin: 0 5px;
+            }
+        </style>
+        <style>
+            div#editar_item section div ul li {
+                display: flex; justify-content: space-between;
+                color: gray;
+                margin: 10px 0;
+                padding: 0 10px;
+            }
+            div#editar_item section div ul li span { margin-right: 10px; }
+            input.edit {
+                width: 100%;
+                border: none;
+                background-color: #c6c6c614;
+                color: gray;
+            }
+
+            div#editar_item section div ul li.preco {
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                border-bottom-color: green;
+                margin: 20px 0;
+            }
+            div#editar_item section div ul li.preco * {
+                color: green;
+                font-size: 30px;
+                font-weight: bold;
+            }
+        </style>
+
+    </head>
+    <body>
+        
+        <main>
+            <div id="pagina_inicial">
+                <nav>
+                    <h1> Página inicial </h1>
+                </nav>
+                <section>
+                    <ul id="lista_principal">
+                        <!-- <li class="item_lista">
+                            <ul class="descricao">
+                                <li>
+                                    <span class="nome"> Arroz </span>
+                                    <span class="preco"> R$ 21,90 </span>
+                                </li>
+                                <li>
+                                    <span class="preco_total"> R$ 21,90 </span>
+                                    <span class="quantidade"> (1x) </span>
+                                </li>
+                            </ul>
+                            <div class="li_botoes">
+                                <button class="detalhes"> Detalhes </button>
+                                <button class="remover"> Remover </button>
+                            </div>
+                        </li> -->
+                    </ul>
+                    <div id="nada_adicionado">
+                        <span> Nada adicionado ainda... </span>
+                    </div>
+                    <div id="dados_finais">
+                        <!-- <div class="linha"><div></div></div>
+                        <ul>
+                            <li id="produtos"> Produtos: 1 </li>
+                            <li id="itens"> Itens: 1 </li>
+                            <li id="preco_total"> Total: <span class="verde"> R$ 21,90 </span> </li>
+                        </ul> -->
+                    </div>
+                </section>
+                <footer>
+                    <button id="adicionar"> &plus; </button>
+                </footer>
+            </div>
+            <div id="adicionar_item">
+                <nav>
+                    <h1> Adicionar novo item </h1>
+                </nav>
+                <br>
+                <section>
+                    <div class="section">
+                        <div class="input">
+                            <input type="text" class="input" id="nome_produto" placeholder="Insira o nome do produto">
+                            <button class="clear"></button>
+                        </div>
+                        <div class="numeros">
+                            <div class="input">
+                                <input type="number" class="input" id="preco_produto" placeholder="Preço do produto">
+                                <button class="clear"></button>
+                            </div>
+                            <div class="input">
+                                <input type="number" class="input" id="quantidade_produto" placeholder="Quantidade">
+                                <button class="clear"></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="cancel-confirm">
+                        <button class="cancel" id="cancelar_add"> Cancelar </button>
+                        <button class="confirm" id="adicionar_add"> Adicionar </button>
+                    </div>
+                </footer>
+            </div>
+            <div id="editar_item">
+                <nav>
+                    <h1> Informações deste item </h1>
+                </nav>
+                <br>
+                <section>
+                    <div class="section">
+                        <ul>
+                            <li> <span> Nome: </span> <input type="text" class="edit" id="nome_edit"> </li>
+                            <li class="preco"> <span> R$ </span> <input type="number" class="edit" id="preco_edit"> </li>
+                            <li> <span> Quantidade: </span> <input type="number" class="edit" id="quantidade_edit"> </li>
+                        </ul>
+                    </div>
+                </section>
+                <footer>
+                    <div class="cancel-confirm">
+                        <button class="cancel" id="cancelar_edit"> Cancelar </button>
+                        <button class="confirm" id="salvar"> Salvar </button>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <script>
+            function errorMensage() {
+                alert( 'Oops! Algo deu errado...\nTalvez os dados não foram preenchidos corretamente')
+            }
+            function deleteByKey(key) {
+                let result = new Array()
+                for( let c = 0; c < lista_array.length; c++) {
+                    if( c !== key) {
+                        result.push( lista_array[c])
+                    }
+                }
+                lista_array = result
+
+                atualizarListaPrincipal()
+            }
+
+            function atualizarListaPrincipal() {
+                // Limpando a página primeiro.
+                pagina_inicial.lista_principal.innerHTML = ''
+                pagina_inicial.dados_finais.innerHTML = ''
+
+                // Caso a lista esteja vazia...
+                if( lista_array.length == 0) {
+                    pagina_inicial.nada_adicionado.style.display = 'initial'
+                    return
+                } else {
+                    pagina_inicial.nada_adicionado.style.display = 'none'
+
+                    // Mostrar cada intem na página.
+                    for( let c = 0; c < lista_array.length; c++) {
+                        pagina_inicial.lista_principal.innerHTML += `<li class="item_lista">
+                            <ul class="descricao">
+                                <li>
+                                    <span class="nome"> ${lista_array[c].nome} </span>
+                                    <span class="preco"> ${lista_array[c].preco[1]} </span>
+                                </li>
+                                <li>
+                                    <span class="preco_total"> ${lista_array[c].total[1]} </span>
+                                    <span class="quantidade"> (${lista_array[c].quantidade}x) </span>
+                                </li>
+                            </ul>
+                            <div class="li_botoes">
+                                <button class="detalhes"> Detalhes </button>
+                                <button class="remover"> Remover </button>
+                            </div>
+                        </li>`
+                    }
+
+                    
+                    // Mostrando os dados finais da compra.
+                    let dadosFinais = () => {
+                        let dados = [0, 0]
+                        for( let c = 0; c < lista_array.length; c++) {
+                            dados[0] += lista_array[c].quantidade
+                            dados[1] += lista_array[c].total[0]
+
+                        }
+                        dados[1] = dados[1].toLocaleString( 'pt-br', { style:'currency', currency:'BRL'})
+                        return dados
+                    }
+
+                    pagina_inicial.dados_finais.innerHTML = `<div class="linha"><div></div></div>
+                    <ul>
+                        <li id="produtos"> Produtos: ${lista_array.length} </li>
+                        <li id="itens"> Itens: ${dadosFinais()[0]} </li>
+                        <li id="preco_total"> Total: <span class="verde"> ${dadosFinais()[1]} </span> </li>
+                    </ul>`
+                    
+
+                    // Botões de editar e de remover.
+                    const editar_buttons = document.querySelectorAll( 'button.detalhes')
+                    const remover_buttons = document.querySelectorAll( 'button.remover')
+
+                    for( let c = 0; c < lista_array.length; c++) {
+                        editar_buttons[c].addEventListener( 'click', () => {
+                            pagina_inicial.elemento.style.display = 'none'
+                            editar_item.elemento.style.display = 'initial'
+
+                            editar_item.nome.value = lista_array[c].nome
+                            editar_item.preco.value = lista_array[c].preco[0]
+                            editar_item.quantidade.value = lista_array[c].quantidade
+
+                            variavelImportante = c
+                        })
+                        remover_buttons[c].addEventListener( 'click', () => {
+                            deleteByKey(c)
+                        })
+                    }
+                }
+            }
+
+
+
+
+            const pagina_inicial = {
+                elemento: document.querySelector( 'div#pagina_inicial'),
+                lista_principal: document.querySelector( 'ul#lista_principal'),
+                nada_adicionado: document.querySelector( 'div#nada_adicionado'),
+                dados_finais: document.querySelector( 'div#dados_finais'),
+                adicionar: document.querySelector( 'button#adicionar')
+            }
+            const adicionar_item = {
+                elemento: document.querySelector( 'div#adicionar_item'),
+                nome: document.querySelector( 'input#nome_produto'),
+                preco: document.querySelector( 'input#preco_produto'),
+                quantidade: document.querySelector( 'input#quantidade_produto'),
+                clear_buttons: document.querySelectorAll( 'button.clear'),
+                cancelar: document.querySelector( 'button#cancelar_add'),
+                adicionar: document.querySelector( 'button#adicionar_add')
+            }
+            const editar_item = {
+                elemento: document.querySelector( 'div#editar_item'),
+                nome: document.querySelector( 'input#nome_edit'),
+                preco: document.querySelector( 'input#preco_edit'),
+                quantidade: document.querySelector( 'input#quantidade_edit'),
+                cancelar: document.querySelector( 'button#cancelar_edit'),
+                salvar: document.querySelector( 'button#salvar')
+            }
+
+            var variavelImportante
+            var lista_array = new Array()
+            /* {
+                nome: "Arroz",
+                preco: [21.9, "R$ 21,90"],
+                quantidade: 1,
+                total: [21.9, "R$ 21,90"]
+            } */
+
+
+            pagina_inicial.elemento.style.display = 'initial'
+            adicionar_item.elemento.style.display = 'none'
+            editar_item.elemento.style.display = 'none'
+            atualizarListaPrincipal()
+        </script>
+        <script>
+            function back() {
+                pagina_inicial.elemento.style.display = 'initial'
+                adicionar_item.elemento.style.display = 'none'
+                editar_item.elemento.style.display = 'none'
+                
+                // Isso dispara o evento 'cliick' nos botoes de limpar o texto.
+                for( let c = 0; c < 3; c++) {
+                    adicionar_item.clear_buttons[c].dispatchEvent( new Event( 'click'))
+                }
+                editar_item.nome.value = ''
+                editar_item.preco.value = ''
+                editar_item.quantidade.value = ''
+                atualizarListaPrincipal()
+            }
+
+
+            pagina_inicial.adicionar.addEventListener( 'click', function() {
+                pagina_inicial.elemento.style.display = 'none'
+                adicionar_item.elemento.style.display = 'initial'
+            })
+
+            for( let c = 0; c < 3; c++) {
+                adicionar_item.clear_buttons[c].addEventListener( 'click', function() {
+                    switch(c) {
+                        case 0:
+                            adicionar_item.nome.value = ''
+                            break
+                        case 1:
+                            adicionar_item.preco.value = ''
+                            break
+                        default:
+                            adicionar_item.quantidade.value = ''
+                    }
+                })
+            }
+        </script>
+        <script>
+            adicionar_item.adicionar.addEventListener( 'click', function() {
+                if( adicionar_item.quantidade.value.length == 0) {
+                    adicionar_item.quantidade.value = 1
+                }
+                // Verificando se os dados foram preechidos corretamente...
+                if(
+                    (adicionar_item.nome.value.length == 0 || adicionar_item.preco.value.length == 0) ||
+                    ( Number(adicionar_item.quantidade.value) < 1 || Number(adicionar_item.preco.value) <= 0)
+                ) {
+                    errorMensage()
+                } else {
+                    let preco_num = Number( adicionar_item.preco.value)
+                    let quantidade_num = Number( adicionar_item.quantidade.value)
+                    lista_array.push( {
+                        nome: adicionar_item.nome.value,
+                        preco: [
+                            preco_num,
+                            preco_num.toLocaleString( 'pt-br', { style:'currency', currency:'BRL'})
+                        ],
+                        quantidade: quantidade_num,
+                        total: [
+                            preco_num*quantidade_num,
+                            (preco_num*quantidade_num).toLocaleString( 'pt-br', { style:'currency', currency:'BRL'})
+                        ]
+                    })
+                    atualizarListaPrincipal()
+                    back()
+
+                    // Limpando os inputs
+                    adicionar_item.nome.value = ''
+                    adicionar_item.preco.value = ''
+                    adicionar_item.quantidade.value = ''
+                }
+            })
+            adicionar_item.cancelar.addEventListener( 'click', back)
+
+
+
+            editar_item.salvar.addEventListener( 'click', () => {
+                if( editar_item.quantidade.value.length == 0) {
+                    editar_item.quantidade.value = 1
+                }
+
+                // Verificando (denovo) os dados relatados...
+                if(
+                    (editar_item.nome.value.length == 0 || editar_item.preco.value.length == 0) ||
+                    ( Number(editar_item.quantidade.value) < 1 || Number(editar_item.preco.value) <= 0)
+                ) {
+                    errorMensage()
+                } else {
+                    let preco_num = Number( editar_item.preco.value)
+                    let quantidade_num = Number( editar_item.quantidade.value)
+
+                    lista_array[variavelImportante].nome = editar_item.nome.value
+                    lista_array[variavelImportante].preco = [
+                        preco_num,
+                        preco_num.toLocaleString( 'pt-br', { style:'currency', currency:'BRL'})
+                    ],
+                    lista_array[variavelImportante].quantidade = quantidade_num
+                    lista_array[variavelImportante].total = [
+                        preco_num*quantidade_num,
+                        (preco_num*quantidade_num).toLocaleString( 'pt-br', { style:'currency', currency:'BRL'})
+                    ]
+
+                    back()
+                }
+            })
+            editar_item.cancelar.addEventListener( 'click', back)
+        </script>
+    </body>
+</html>
